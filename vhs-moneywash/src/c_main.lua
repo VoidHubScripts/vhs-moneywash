@@ -59,6 +59,8 @@ function targetModel(model, name, options, interact, job, gang, distance)
     end
 end
 
+local Locations = lib.callback.await('vhs-moneywash:loc', false)
+
 Citizen.CreateThread(function()
     Peds()
     setupTarget()
@@ -66,6 +68,7 @@ Citizen.CreateThread(function()
 end)
 
 local spawnedPeds = {}
+
 
 function Peds()
     for k, v in pairs(Locations) do
@@ -101,7 +104,7 @@ end
 function setupTarget()
     for k, v in pairs(Locations) do
         local storeOptions = {
-            { icon = Target.iccon, label = Target.label, event = nil,
+            { icon = Target.icon, label = Target.label, event = nil,
                 action = function()
                     Interact(k)
                 end,

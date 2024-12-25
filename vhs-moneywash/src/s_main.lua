@@ -128,6 +128,10 @@ function getItem(source, item)
     return nil
 end
 
+lib.callback.register('vhs-moneywash:loc', function(source)
+    return Locations
+end)
+
 lib.callback.register('vhs-moneywash:check', function(source, zone)
     local data = Locations[zone]
     local bills = getMoneys(source)
