@@ -135,20 +135,23 @@ function Interact(k)
             return false 
         end
     end
-   local check = lib.callback.await('vhs-moneywash:check', false, k)     
-   if check then 
-    lib.requestAnimDict('misscarsteal4@actor', 500)
-    TaskPlayAnim(PlayerPedId(), 'misscarsteal4@actor', 'actor_berating_loop', 8.0, -8.0, -1, 50, 0, false, false, false)
-    local bar = ProgressBar(data.progress.time, data.progress.label)
-    if bar == 'complete' then 
-        StopAnimTask(PlayerPedId(), 'misscarsteal4@actor', 'actor_berating_loop', 1.0)
-        lib.callback.await('vhs-moneywash:wash', false, k)
-        elseif bar == 'cancelled' then 
-        StopAnimTask(PlayerPedId(), 'misscarsteal4@actor', 'actor_berating_loop', 1.0) 
-        end 
-    end 
+    local check = lib.callback.await('vhs-moneywash:check', false, k)
+    if not check then return end
+    local alert = lib.alertDialog({ header = 'Do you want to clean all the money on you?', centered = true, cancel = true })
+    if alert == 'confirm' then
+        lib.requestAnimDict('misscarsteal4@actor', 500)
+        TaskPlayAnim(PlayerPedId(), 'misscarsteal4@actor', 'actor_berating_loop', 8.0, -8.0, -1, 50, 0, false, false, false)
+        local bar = ProgressBar(data.progress.time, data.progress.label)
+        if bar == 'complete' then
+            StopAnimTask(PlayerPedId(), 'misscarsteal4@actor', 'actor_berating_loop', 1.0)
+            lib.callback.await('vhs-moneywash:wash', false, k)
+        elseif bar == 'cancelled' then
+            StopAnimTask(PlayerPedId(), 'misscarsteal4@actor', 'actor_berating_loop', 1.0)
+        end
+    else
+        Notify('info', 'Transaction cancelled!')
+    end
 end
-
 
 
 

@@ -1,5 +1,5 @@
 WebhookConfig = {
-    URL = 'https://discord.com/api/webhooks/1223537851405303831/XHgRk8LiLTXrxdnYMmjz6Q7mGWMTCVyK8Wcd3N9iUZLuSPevZhvcfhXJ7vMV0Mn6Xrr_'
+    URL = 'YOUR_WEBHOOK_HERE'
     
 }
 
@@ -7,7 +7,7 @@ Locations = {
     zone_1 = {
         blip = { useBlip = true, sprite = 108, scale = 0.8, color = 6, useRadius = true, label = 'Money Wash' },  -- Blip configs 
         ped = {loc = vec4(1135.7504, -987.6758, 45.1131, 209.5403), model = 'a_m_m_eastsa_01', scenario = 'WORLD_HUMAN_AA_SMOKE'},  -- Ped configs 
-        keys = { useKeys = false, keyItem = 'blue_key'}, -- Use keys to restrict locations 
+        keys = { useKeys = true, keyItem = 'blue_key'}, -- Use keys to restrict locations 
         progress = { time = 5000, label = 'Cleaning moneys' }, -- Progress bar configs  
         percent = 25,  -- 25 % Tax on cleaning 
         jobs = {'police', 'lspd'}  -- Blacklisted jobs, jobs that cannot clean moneys 
